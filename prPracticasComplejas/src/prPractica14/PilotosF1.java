@@ -79,7 +79,7 @@ public class PilotosF1 {
 		
 		
 		while (sc.hasNext()) {
-			this.addCarreraPiloto(sc.nextLine(),puesto);
+			this.addCarreraPiloto(sc.next(),puesto);
 			puesto++;
 		}
 		
@@ -87,15 +87,12 @@ public class PilotosF1 {
 	}
 	
 	public String clasificacionPorPilotos() {
-		//Ordenar los pilotos primero
-		//Mostrar los pilotos depues
+		
+		String cad = "";
+		
+		for (int i = 0 ; i < this.getPosLibre() ; i++) cad+=pilotos[i].toString()+"\n";
+
+		return cad;
 	}
 	
-	private void ordenaPuntos() {
-		for(int i = 0 ; i < this.getPosLibre() ; i++) {
-			for (int j = i+1 ; j < this.getPosLibre()-1 ; j++) {
-				if ()
-			}
-		}
-	}
 }

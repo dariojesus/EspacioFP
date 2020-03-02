@@ -1,6 +1,7 @@
 package prPractica14;
 
-public class Piloto {
+
+public class Piloto{
 	
 	private String nombre;
 	private String nacionalidad;
@@ -42,6 +43,4 @@ public class Piloto {
 		return this.getPuntuacion()+" - "+this.getNombre()+" ("+this.getNacionalidad()+"), "+this.getEscuderia()+" - "+this.getFechaNac();
 	}
 	
-	
-
 }
