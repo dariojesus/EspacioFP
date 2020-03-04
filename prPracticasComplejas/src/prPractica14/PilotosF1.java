@@ -1,5 +1,6 @@
 package prPractica14;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class PilotosF1 {
@@ -87,6 +88,8 @@ public class PilotosF1 {
 	}
 	
 	public String clasificacionPorPilotos() {
+		
+		Arrays.parallelSort(this.getPilotos(), 0, this.getPosLibre());
 		
 		String cad = "";
 		
