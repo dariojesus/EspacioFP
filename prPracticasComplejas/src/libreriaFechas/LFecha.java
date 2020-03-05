@@ -57,7 +57,7 @@ public class LFecha {
 	}
 	
 	public static String formatea (Calendar c) {
-		SimpleDateFormat formato = new SimpleDateFormat("EEEE dd-MMM-yyyy, HH:mm:ss");
+		SimpleDateFormat formato = new SimpleDateFormat("EEEE dd-MMM-yyyy");
 		return formato.format(c.getTime());
 	}
 	
