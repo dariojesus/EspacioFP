@@ -2,14 +2,17 @@ package prPractica14;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class PilotosF1 {
 	
 	private Piloto [] pilotos;
+	private TreeSet<Escuderia> escuderias;
 	private int posLibre = 0;
 	
 	public PilotosF1() {
 		pilotos = new Piloto [22];
+		escuderias = new TreeSet<Escuderia>();
 	}
 
 	public Piloto[] getPilotos() {return pilotos;}
@@ -20,11 +23,24 @@ public class PilotosF1 {
 
 	public void setPosLibre(int posLibre) {this.posLibre = posLibre;}
 	
+	public TreeSet<Escuderia> getEscuderias() {
+		return escuderias;
+	}
+
+	public void setEscuderias(TreeSet<Escuderia> escuderias) {
+		this.escuderias = escuderias;
+	}
+
 	public boolean addPiloto(Piloto p) {
 		int pos = this.getPosLibre();
 		
 		if ( pos < 22) {
+			
 			pilotos[pos]=p;
+			
+			if(!escuderias.contains(new Escuderia (p.getEscuderia())))
+				escuderias.add(new Escuderia (p.getEscuderia()));
+			
 			this.setPosLibre(pos+1);
 			return true;
 		}
@@ -52,12 +68,26 @@ public class PilotosF1 {
 		Piloto p = buscaPiloto(nombre);
 		
 		if (p != null) {
-			p.setPuntuacion(p.getPuntuacion()+this.obtenerPuntos(puesto));
+			
+			int ptoConseguido = this.obtenerPuntos(puesto);
+			p.setPuntuacion(p.getPuntuacion()+ptoConseguido);
+			escuderiaSumaPuntos(p,ptoConseguido);
+
 			return true;
 		}
 		
 		else return false;
 		
+		
+	}
+	
+	private void escuderiaSumaPuntos (Piloto p, int pto) {
+		
+		for (Escuderia e: escuderias) {
+			if (e.getNombre().equals(p.getEscuderia())) {
+				e.setPuntos(e.getPuntos()+pto);
+			}
+		}
 		
 	}
 	
@@ -95,6 +125,16 @@ public class PilotosF1 {
 		
 		for (int i = 0 ; i < this.getPosLibre() ; i++) cad+=pilotos[i].toString()+"\n";
 
+		return cad;
+	}
+	
+	public String OrdenarEscuderiaPorPuntos() {
+		
+		String cad = "";
+		for (Escuderia e: this.getEscuderias()) {
+			cad+=e.toString()+"\n";
+		}
+		
 		return cad;
 	}
 	

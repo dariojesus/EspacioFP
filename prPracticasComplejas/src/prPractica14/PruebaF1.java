@@ -21,6 +21,7 @@ public class PruebaF1 {
 		pf1.addGranPremio("Fernando Alonso;Lewis Hamilton;Jenson Button;Pastor Maldonado;Nico Roserberg;Felipe Massa");
 		
 		System.out.println(pf1.clasificacionPorPilotos());
+		System.out.println(pf1.OrdenarEscuderiaPorPuntos());
 	}
 
 }
