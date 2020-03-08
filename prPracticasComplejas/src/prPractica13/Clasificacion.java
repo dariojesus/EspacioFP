@@ -65,6 +65,7 @@ public class Clasificacion {
 	}
 	
 	public String toString() {
+		equipos.sort(new OrdenAlternativo());
 		String cad = "CLASIFICACIÓN\n"
 				                    +"PJ PG PE PP GF GC Puntos Equipo\n";
 		
