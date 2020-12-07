@@ -64,11 +64,10 @@ if ($_POST){
         //Ya existe una cesta de la compra a la que agregar productos
         if ($linea > 0){
 
-            $unidad = $sqli->query("select `unidades` from `dfs_cesta_usuario` where `nick` = '$nick' and `cod_producto` = '$codPro'");
+            $unidad = $sqli->query("select `unidades` from `dfs_cesta_usuario` where `nick` = '$nick' and `cod_producto` = '$codPro'")->fetch_array()[0];
 
             //Si ya habia un producto similar en el carrito
             if ($unidad){
-                $unidad = $unidad->fetch_array()[0];
                 $unidades += $unidad;
                 $total = (float)$precio * (float)$unidades;
 
@@ -77,6 +76,7 @@ if ($_POST){
                                                         "where `nick` = '$nick'".
                                                         "and `cod_producto` = '$codPro'");
                 
+                header("Location: http://".$_SERVER["SERVER_NAME"]);
                 exit();
 
             }
