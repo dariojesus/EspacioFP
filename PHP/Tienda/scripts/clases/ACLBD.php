@@ -57,7 +57,7 @@ public function getPermisosRole($codRole){
 
 //Funciones de usuario
 public function anadirUsuario($nick,$nombre,$contrasena,$codRole){
-    $consulta = "INSERT INTO  `acl_usuarios` (`nick`,`nombre`,`contrasenna`,`cod_acl_rol`) VALUES ('$nick', '$nombre', '$contrasena', $codRole)";
+    $consulta = "INSERT INTO  `acl_usuarios` (`nick`,`nombre`,`contrasenna`,`cod_acl_rol`) VALUES ('$nick', '$nombre', MD5('$contrasena'), $codRole)";
     return $this->_sqli->query($consulta);
 }
 
@@ -77,7 +77,7 @@ public function existeUsuario($nick){
 }
 
 public function esValido($nick, $contrasena){
-    $consulta ="SELECT * FROM `acl_usuarios` WHERE nick = '$nick' and contrasenna = '$contrasena' and borrado = 0 ";
+    $consulta ="SELECT * FROM `acl_usuarios` WHERE nick = '$nick' and contrasenna = MD5('$contrasena') and borrado = 0 ";
 
     $resul = $this->_sqli->query($consulta)->fetch_row();
 
@@ -150,7 +150,7 @@ public function setNombre($codUsuario, $nombre){
 }
 
 public function setContrasenia($codUsuario, $contra){
-    $consulta = "UPDATE `acl_usuarios` SET `contrasenna` = '$contra' WHERE `cod_acl_usuario` = '$codUsuario'";
+    $consulta = "UPDATE `acl_usuarios` SET `contrasenna` = MD5('$contra') WHERE `cod_acl_usuario` = '$codUsuario'";
     $this->_sqli->query($consulta);
 }
 

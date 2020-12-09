@@ -58,6 +58,7 @@ function inicioCuerpo($cabecera,$acceso,$conexion){
 
                             echo "<a>Bienvenido: $nombre</a>".PHP_EOL;
                             echo "<a href='/aplicacion/usuarios/misDatos.php'>Cuenta</a>".PHP_EOL;
+                            echo "<a href='/aplicacion/articulos/misCompras.php'>Compras realizadas</a>".PHP_EOL;
                             
                             
                             if ($consulta->num_rows > 0){

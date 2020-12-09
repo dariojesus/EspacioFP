@@ -43,6 +43,13 @@ if ($_POST){
             if (!(validaCadena($_POST["nombre"],50,$_POST["nombre"])))
                 $errores[] = "El nombre no puede tener mas de 50 caracteres.";
 
+        //Comprobación de Contraseña
+            if (empty($_POST["contra"]))
+                $errores[] = "La contraseña no puede estar vacía.";
+
+            if (!(validaCadena($_POST["contra"],30,$_POST["contra"])))
+                $errores[] = "La contraseña no puede tener mas de 30 caracteres.";
+
         //Comprobación de Dirección
             if (empty($_POST["direccion"]))
                 $errores[] = "La dirección no puede estar vacía.";
@@ -84,6 +91,7 @@ if ($_POST){
                 //Aseguramos frente a inyeccion de código
                 $nick = $sqli-> real_escape_string($_POST["nick"]);
                 $nombre = $sqli-> real_escape_string($_POST["nombre"]);
+                $contra = $_POST["contra"];
                 $nif = $sqli-> real_escape_string($_POST["nif"]);
                 $direccion = $sqli-> real_escape_string($_POST["direccion"]);
                 $poblacion = $sqli-> real_escape_string($_POST["poblacion"]);
@@ -107,6 +115,7 @@ if ($_POST){
                 else{
                     $codUS = $acl->getCodUsuario($nick);
                     $acl->setNombre($codUS,$nombre);
+                    $acl->setContrasenia($codUS,$contra);
                     header("Location: http://".$_SERVER["HTTP_HOST"]."/aplicacion/usuarios/misDatos.php?nick=$nick");
                     exit();
                 }
@@ -151,6 +160,10 @@ function cuerpo($datos,$e){
                 <tr>
                     <th>NIF:</th>
                     <td><input type="text" name="nif" value="<?php echo $datos["nif"] ?>" maxlength="9"></td>
+                </tr>
+                <tr>
+                    <th>Contraseña:</th>
+                    <td><input type="password" name="contra"></td>
                 </tr>
                 <tr>
                     <th>Nombre:</th>

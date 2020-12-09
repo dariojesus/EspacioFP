@@ -4,6 +4,8 @@ require_once ('../../cabecera.php');
 
 if ($_GET){
    unset($_SESSION["usuario"]);
+   header("Location: http://".$_SERVER["HTTP_HOST"]."/aplicacion/acceso/login.php");
+   exit();
 }
 
 $error = "";

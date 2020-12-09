@@ -61,7 +61,6 @@ tr:hover{background-color: rgb(245, 187, 116);}
 th, td {
 	text-align: center;
 	padding: 8px;
-	border-bottom: 1px solid #ddd;
 }
 
 th{background-color: orange;}

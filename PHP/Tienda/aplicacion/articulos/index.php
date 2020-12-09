@@ -18,7 +18,6 @@ if(!$acceso->puedePermisos(1) || !$acceso->puedePermisos(9)){
 $sentencia = "select * from dfs_productos_categorias";
 $consulta = $sqli->query($sentencia);
 
-
 //Vista
 inicioCabecera("Usuarios");
 cabecera();

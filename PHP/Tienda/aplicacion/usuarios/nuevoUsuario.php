@@ -109,7 +109,7 @@ if ($_POST){
         
         //Se establece la sentencia y ejecuta, si ocurre algun error este se almacena en el array de errores
         $sentencia = "INSERT INTO `usuarios` (`nick`,`nif`,`direccion`,`poblacion`,`provincia`,`cp`,`fecha_nacimiento`,`borrado`)".
-                                  " values ('$nick','$nif','$direccion','$poblacion','$provincia',$cp,'$nacimiento',0);";
+                                  " values ('$nick','$nif','$direccion','$poblacion','$provincia','$cp','$nacimiento','0');";
         
         if(!$sqli->query($sentencia))
             paginaError("Error : ".$sqli->errno." ->".$sqli->error);
