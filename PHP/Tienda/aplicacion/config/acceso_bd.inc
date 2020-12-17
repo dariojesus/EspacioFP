@@ -1,6 +1,6 @@
 <?php
     $conexion = "localhost";
-    $name = "tienda";
+    $name = "2daw17";
     $contra = "2daw";
-    $bd = "tienda";
+    $bd = "BD2DAW17";
 ?>

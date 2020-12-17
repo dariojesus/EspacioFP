@@ -3,7 +3,7 @@ require_once ('cabecera.php');
 
 //Controlador
 $puede = false;
-$sentencia = "select * from `dfs_productos`";
+$sentencia = "select * from `dfs_productos` where `borrado` = '0'";
 $sentencia2 = "select `cod_categoria`, `nombre` from `dfs_categorias`";
 
 //Control de inicio de sesion
@@ -17,21 +17,20 @@ if ($_POST){
     //Formulario de filtrado
     if (isset($_POST["filtro"])){
         
-        $sentencia .= " where ";
         $union = " and ";
         $senFinal = "true";
+
+        if (!empty($_POST["categoria"])){
+            $categoria = $sqli->real_escape_string($_POST["categoria"]);
+            $sentencia .= $union."`cod_categoria` = $categoria ".$union;
+        }
     
         if (!empty($_POST["nombre"])){
             $nombre = $sqli->real_escape_string($_POST["nombre"]);
             $nombre = mb_strtolower($nombre);
-            $sentencia .= "`nombre` like '%$nombre%'".$union;
+            $sentencia .="`nombre` like '%$nombre%'".$union;
         }
-    
-        if (!empty($_POST["categoria"])){
-            $categoria = $sqli->real_escape_string($_POST["categoria"]);
-            $sentencia .= "`cod_categoria` = $categoria ".$union;
-        }
-    
+        
         $sentencia.= $senFinal;
     }
 
@@ -56,19 +55,19 @@ if ($_POST){
 
         //Recojo el codigo del usuario
         $codUsr = $sqli->query("select `cod_usuario` from `usuarios` where `nick` = '$nick'")->fetch_array()[0];
+
         //Recojo si tiene alguna linea en su cesta
         $linea = $sqli->query("select * from `dfs_cesta_usuario` where `nick` = '$nick'")->num_rows;
-
-
 
         //Ya existe una cesta de la compra a la que agregar productos
         if ($linea > 0){
 
-            $unidad = $sqli->query("select `unidades` from `dfs_cesta_usuario` where `nick` = '$nick' and `cod_producto` = '$codPro'")->fetch_array()[0];
+            $unidad = $sqli->query("select `unidades` from `dfs_cesta_usuario` where `nick` = '$nick' and `cod_producto` = '$codPro'");
+            $unidad = $unidad->fetch_array();
 
             //Si ya habia un producto similar en el carrito
             if ($unidad){
-                $unidades += $unidad;
+                $unidades += $unidad[0];
                 $total = (float)$precio * (float)$unidades;
 
                 $sqli->query("update `dfs_cesta_usuario` set `unidades` = '$unidades',".
