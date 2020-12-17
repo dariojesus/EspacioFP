@@ -1,0 +1,55 @@
+html,body{
+    width: 100%;
+    margin: 0%;
+    padding: 0%;
+    background-color: darkcyan;
+    overflow: hidden;}
+
+#li{
+    position: absolute;
+    left: 0%;
+    background-color: rgba(0, 0, 0, 0.534);
+    width: 10%;
+    z-index: 10;}
+
+#ld{
+    position: absolute;
+    right: 0%;
+    background-color: rgba(0, 0, 0, 0.534);
+    width: 10%;
+    z-index: 10;}
+
+#main{
+    position: absolute;
+    left: 10%;
+    background-image: url('../images/fondo.jpg');
+    background-size: cover;
+    width: 80%;
+    height: 675px;
+    z-index: 5;}
+
+.personaje{z-index: 6;}
+
+.mensaje{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border: 2px brown double;
+    color: brown;
+    font-size: 500%;
+    z-index: 10;}
+
+#pto, .boton{
+    background-color: rgb(60, 42, 107);
+    border: 1px solid purple;
+    color: rgb(212, 212, 212);
+    position: relative;
+    text-align: center;
+    top: 3%;
+    margin: 3%;
+    left: 15%;
+    width: 70%;}
+
+.boton:hover{
+    background-color: rgb(139, 0, 104);}    
